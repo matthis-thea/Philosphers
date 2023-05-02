@@ -1,40 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_include.h                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: haze <haze@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 09:06:02 by mthea             #+#    #+#             */
-/*   Updated: 2023/05/02 17:50:43 by haze             ###   ########.fr       */
+/*   Updated: 2023/05/02 18:04:19 by haze             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_INCLUDE_H
-# define FT_INCLUDE_H
-# include <pthread.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <sys/time.h>
-# include <stdlib.h>
+#include "ft_include.h"
 
-typedef struct s_finale
+int main(int argc, char **argv)
 {
-                int nb_phil;
-                int time_die;
-                int time_eat;
-                int time_sleep;
-                
-} t_finale;
-int	ft_nb_argc(int argc);
-int ft_if_char(char **argv);
-int ft_if_pos(char **argv);
-int ft_verif_totale(int argc, char **argv);
-int final_parse(char **argv, int argc, t_finale *p);
-
-
-
-int	ft_atoi(const char *thestring);
-int	error(void);
-
-#endif
+    t_finale    *p;
+    p = malloc(sizeof(t_finale));
+    final_parse(argv, argc, p);
+    printf("Juste pour le test %d\n", test);
+    return (0);
+}

@@ -6,14 +6,14 @@
 #    By: haze <haze@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 09:06:02 by mthea             #+#    #+#              #
-#    Updated: 2023/04/26 14:20:44 by haze             ###   ########.fr        #
+#    Updated: 2023/05/02 17:13:53 by haze             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #-----------------VARIABLES------------------
 #--------------------------------------------
 # VARIABLES FOR DOT C
-PHILOSOPHERS =	ft_parse.c ft_utils.c
+PHILOSOPHERS =	ft_parse.c ft_utils.c main.c
 #--------------------------------------------
 # VARIABLES FOR DOT O
 PHILOSOPHERS_OBJ = $(PHILOSOPHERS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: haze <haze@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 09:06:02 by mthea             #+#    #+#             */
-/*   Updated: 2023/04/26 14:18:45 by haze             ###   ########.fr       */
+/*   Updated: 2023/05/02 17:35:11 by haze             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,17 @@ int ft_verif_totale(int argc, char **argv)
 	return (1);
 }
 
-int main(int argc, char **argv)
+int final_parse(char **argv, int argc, t_finale *p)
 {
-    if (ft_verif_totale(argc, argv) == 0)
+	int	number;
+
+	number = ft_verif_totale(argc, argv);
+	if (number == 0)
 		return (0);
+	p->nb_phil = ft_atoi(argv[1]);
+	p->time_die = ft_atoi(argv[2]);
+	p->time_eat = ft_atoi(argv[3]);
+	p->time_sleep = ft_atoi(argv[4]);
 	return (1);
+	
 }
