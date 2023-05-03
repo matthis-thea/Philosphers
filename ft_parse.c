@@ -89,5 +89,22 @@ int final_parse(char **argv, int argc, t_finale *p)
 	p->time_eat = ft_atoi(argv[3]);
 	p->time_sleep = ft_atoi(argv[4]);
 	return (1);
-	
+}
+
+void final_parse_two(t_finale *p, t_finale_tab *t)
+{
+	int i;
+
+	i = 0;
+	while (i < p->nb_phil)
+	{
+		t[i].id_philo = i + 1;
+		pthread_mutex_init(&t[i].fourchette_d, NULL);
+		if (i == p->nb_phil - 1)
+			t[i].fourchette_g =  &t[0].fourchette_d;
+		else
+			t[i].fourchette_g =  &t[i + 1].fourchette_d;
+		i++;
+
+	}
 }

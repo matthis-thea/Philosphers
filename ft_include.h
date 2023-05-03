@@ -20,18 +20,26 @@
 
 typedef struct s_finale
 {
-                int nb_phil;
-                int time_die;
-                int time_eat;
-                int time_sleep;
-                
-} t_finale;
+    int					nb_phil;
+    int					time_die;
+    int 				time_eat;
+    int 				time_sleep;             
+}			t_finale;
+
+typedef struct s_finale_tab
+{
+    pthread_t   		philo;
+    int					id_philo;
+	pthread_mutex_t		fourchette_d;
+	pthread_mutex_t		*fourchette_g;
+}               t_finale_tab;
+
 int	ft_nb_argc(int argc);
 int ft_if_char(char **argv);
 int ft_if_pos(char **argv);
 int ft_verif_totale(int argc, char **argv);
 int final_parse(char **argv, int argc, t_finale *p);
-
+void final_parse_two(t_finale *p, t_finale_tab *t);
 
 
 int	ft_atoi(const char *thestring);
