@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: haze <haze@student.42.fr>                  +#+  +:+       +#+         #
+#    By: mthea <mthea@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 09:06:02 by mthea             #+#    #+#              #
-#    Updated: 2023/05/02 17:13:53 by haze             ###   ########.fr        #
+#    Updated: 2023/05/15 17:09:11 by mthea            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 #-----------------VARIABLES------------------
 #--------------------------------------------
@@ -21,7 +22,8 @@ PHILOSOPHERS_OBJ = $(PHILOSOPHERS:.c=.o)
 # VARIABLES FOR DO A COMPILATION
 CC = gcc 
 
-CFLAGS = -Wall -Werror -Wextra -pthread
+CFLAGS = -Wall -Werror -Wextra -pthread 
+# -fsanitize=thread -g
 
 NAME	=	philo
 RM = rm -rf

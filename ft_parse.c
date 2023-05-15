@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haze <haze@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mthea <mthea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 09:06:02 by mthea             #+#    #+#             */
-/*   Updated: 2023/05/02 17:35:11 by haze             ###   ########.fr       */
+/*   Updated: 2023/05/15 17:44:30 by mthea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,23 +88,23 @@ int final_parse(char **argv, int argc, t_finale *p)
 	p->time_die = ft_atoi(argv[2]);
 	p->time_eat = ft_atoi(argv[3]);
 	p->time_sleep = ft_atoi(argv[4]);
+	final_parse_two(p);
 	return (1);
 }
 
-void final_parse_two(t_finale *p, t_finale_tab *t)
+void final_parse_two(t_finale *p)
 {
 	int i;
 
 	i = 0;
 	while (i < p->nb_phil)
 	{
-		t[i].id_philo = i + 1;
-		pthread_mutex_init(&t[i].fourchette_d, NULL);
+		p[i].id_philo = i + 1;
+		pthread_mutex_init(&p[i].fourchette_d, NULL);
 		if (i == p->nb_phil - 1)
-			t[i].fourchette_g =  &t[0].fourchette_d;
+			p[i].fourchette_g =  &p[0].fourchette_d;
 		else
-			t[i].fourchette_g =  &t[i + 1].fourchette_d;
+			p[i].fourchette_g =  &p[i + 1].fourchette_d;
 		i++;
-
 	}
 }
