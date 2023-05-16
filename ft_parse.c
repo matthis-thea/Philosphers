@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthea <mthea@student.42.fr>                +#+  +:+       +#+        */
+/*   By: haze <haze@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 09:06:02 by mthea             #+#    #+#             */
-/*   Updated: 2023/05/16 13:14:45 by mthea            ###   ########.fr       */
+/*   Updated: 2023/05/16 18:24:35 by haze             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_if_char(char **argv)
 
 int	ft_if_pos(char **argv)
 {
-	int	number;
+	long long int number;
 	int	i;
 
 	i = 1;
@@ -84,12 +84,12 @@ int	ft_final_parse(char **argv, int argc, t_finale *p)
 	number = ft_verif_totale(argc, argv);
 	if (number == 0)
 		return (0);
-	p->nb_phil = ft_atoi(argv[1]);
-	p->time_die = ft_atoi(argv[2]);
-	p->time_eat = ft_atoi(argv[3]);
-	p->time_sleep = ft_atoi(argv[4]);
-	p->nb_eat = -1;
+	p->base.nb_phil = ft_atoi(argv[1]);
+	p->base.time_die = ft_atoi(argv[2]);
+	p->base.time_eat = ft_atoi(argv[3]);
+	p->base.time_sleep = ft_atoi(argv[4]);
+	p->base.nb_eat = -1;
 	if (argc == 6)
-		p->nb_eat = ft_atoi(argv[5]);
+		p->base.nb_eat = ft_atoi(argv[5]);
 	return (1);
 }
