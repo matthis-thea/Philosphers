@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haze <haze@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mthea <mthea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 09:06:02 by mthea             #+#    #+#             */
-/*   Updated: 2023/04/26 14:19:44 by haze             ###   ########.fr       */
+/*   Updated: 2023/05/16 11:12:13 by mthea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,41 @@ int	ft_atoi(const char *thestring)
 	return (valeur);
 }
 
-int error(void)
+int	ft_error(int error)
 {
-	printf("Please, enter valid argument !\n");
+	if (error == -2)
+		printf("Please, enter valid argument !\n");
+	else if (error == -1)
+		printf("Error in the creation of the threads");
 	return (0);
+}
+
+long int	ft_long_error(void)
+{
+	printf("Error in the function Gettimeofday\n");
+	return (0);
+}
+
+long int	ft_actual_time(void)
+{
+	long int			time;
+	struct timeval		current_time;
+	long int			error;
+
+	time = 0;
+	error = gettimeofday(&current_time, NULL);
+	if (error == -1)
+		ft_long_error();
+	time = (current_time.tv_sec * 1000) + (current_time.tv_usec / 1000);
+	return (time);
+}
+
+void	ft_usleep(long int time_in_ms)
+{
+	long int	start_time;
+
+	start_time = 0;
+	start_time = ft_actual_time();
+	while ((ft_actual_time() - start_time) < time_in_ms)
+		usleep(time_in_ms / 10);
 }
