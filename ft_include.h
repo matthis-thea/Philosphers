@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_include.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haze <haze@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mthea <mthea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 09:06:02 by mthea             #+#    #+#             */
-/*   Updated: 2023/05/16 18:33:12 by haze             ###   ########.fr       */
+/*   Updated: 2023/05/17 21:17:10 by mthea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct s_fin
 {
 	pthread_t		philo;
 	int				id_philo;
+	pthread_t		check_dead;
+	pthread_mutex_t	w;
 	pthread_mutex_t	fourchette_d;
 	pthread_mutex_t	*fourchette_g;
 	t_base			*next;
@@ -50,12 +52,13 @@ int				ft_verif_totale(int argc, char **argv);
 int				ft_final_parse(char **argv, int argc, t_finale *p);
 void			ft_final_parse_two(t_finale *p);
 void			*ft_philosophers(void *data);
+void			*check_dead(void *data);
 
 long long int	ft_atoi(char *thestring);
 int				ft_error(int error);
 long int		ft_long_error(void);
 long int		ft_actual_time(void);
 void			ft_usleep(long int time_in_ms);
-void			*ft_start(t_finale *p);
+int				ft_start(t_finale *p);
 
 #endif

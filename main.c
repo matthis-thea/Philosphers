@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haze <haze@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mthea <mthea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 09:06:02 by mthea             #+#    #+#             */
-/*   Updated: 2023/05/16 18:29:20 by haze             ###   ########.fr       */
+/*   Updated: 2023/05/17 21:29:27 by mthea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int main(int argc, char **argv)
     p.fin = malloc(sizeof(t_fin) * p.base.nb_phil);
     ft_final_parse_two(&p);
     // // printf("Id du philosopher : %d\n", p.next[2].id_philo);
-    ft_start(&p);
+    if (!ft_start(&p))
+        free(p.fin);
     return (0);
 }
