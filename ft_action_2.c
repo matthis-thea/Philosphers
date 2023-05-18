@@ -6,7 +6,7 @@
 /*   By: haze <haze@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 09:06:02 by mthea             #+#    #+#             */
-/*   Updated: 2023/05/18 02:00:46 by haze             ###   ########.fr       */
+/*   Updated: 2023/05/18 13:25:27 by haze             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void launch(t_fin *p)
 {
+	pthread_mutex_unlock(&p->check_write);
 	pthread_mutex_lock(&p->fourchette_g);
 	pthread_mutex_lock(&p->check_write);
 	ft_fork(p);

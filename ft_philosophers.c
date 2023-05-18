@@ -6,7 +6,7 @@
 /*   By: haze <haze@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 09:06:02 by mthea             #+#    #+#             */
-/*   Updated: 2023/05/18 02:30:08 by haze             ###   ########.fr       */
+/*   Updated: 2023/05/18 14:39:23 by haze             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,15 @@ int ft_start(t_finale *p)
     i = 0;
     while (i < p->base.nb_phil)
     {
-        p->fin[i].next = &p->base;
         error = pthread_create(&p->fin[i].philo, NULL, ft_philosophers, &p->fin[i]);
-        pthread_join(p->fin[p->base.nb_phil - 1].philo, NULL);
         if (error != 0)
             return(ft_error(-1));
+        i++;
+    }
+    i = 0;
+    while (i < p->base.nb_phil)
+    {
+        pthread_join(p->fin[i].philo, NULL);
         i++;
     }
     return (1);
@@ -37,13 +41,12 @@ void    *ft_philosophers(void *data)
 	p = (t_fin *) data;
     if (p->id_philo % 2 == 0)
         ft_usleep(p->next->time_eat / 10);
-    while (test(1))
+    while (!test(p))
     {
         pthread_create(&p->verif_dead, NULL, ft_verif_dead, data);
         launch(p);
 		pthread_detach(p->verif_dead);
     }
-    printf("C'est sorti\n");
 	return (NULL);
 }
 
@@ -52,25 +55,27 @@ void    *ft_verif_dead(void *data)
     t_fin   *p;
 
     p = (t_fin *) data;
-    int v
     ft_usleep(p->next->time_die);
-    pthread_mutex_lock(&p->verif_death);
+    pthread_mutex_lock(&p->next->verif_death);
     if ((ft_actual_time() - p->last_dinner) >= (long)(p->next->time_die))
     {
         pthread_mutex_lock(&p->check_write);
         ft_dead(p);
         pthread_mutex_unlock(&p->check_write);
-        pthread_mutex_unlock(&p->verif_death);
-        
-        return (NULL);
+        p->next->finish = 1;
     }
-    pthread_mutex_unlock(&p->verif_death);
+    pthread_mutex_unlock(&p->next->verif_death);
     return (NULL);
 }
 
-int test(int i)
+int test(t_fin *p)
 {
-    if (i == 1)
+    pthread_mutex_lock(&p->next->is_dead);
+    if (p->next->finish)
+    {
+        pthread_mutex_unlock(&p->next->is_dead);
         return (1);
+    }
+    pthread_mutex_unlock(&p->next->is_dead);
     return (0);
 }
