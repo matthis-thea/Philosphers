@@ -6,7 +6,7 @@
 /*   By: haze <haze@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 09:06:02 by mthea             #+#    #+#             */
-/*   Updated: 2023/05/18 14:35:38 by haze             ###   ########.fr       */
+/*   Updated: 2023/05/18 18:47:08 by haze             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_fin
 	pthread_mutex_t	*fourchette_d;
 	long int		last_dinner;
 	pthread_mutex_t	fourchette_g;
+	long long int	inc_eat;
 	t_base			*next;
 }				t_fin;
 
@@ -61,8 +62,7 @@ void			*ft_philosophers(void *data);
 void			*ft_verif_dead(void *data);
 int				ft_finish(t_fin *p);
 int				test(t_fin *p);
-
-void	write_status(char *str, t_fin *p);
+void	ft_each_eat(t_fin *p);
 
 
 void ft_think(t_fin *p);
@@ -71,7 +71,7 @@ void ft_sleep(t_fin *p);
 void ft_fork(t_fin *p);
 void ft_dead(t_fin *p);
 void launch(t_fin *p);
-
+int ft_stop(t_finale *p);
 
 long long int	ft_atoi(char *thestring);
 int				ft_error(int error);
