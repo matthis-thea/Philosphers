@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_include.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthea <mthea@student.42.fr>                +#+  +:+       +#+        */
+/*   By: haze <haze@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 09:06:02 by mthea             #+#    #+#             */
-/*   Updated: 2023/05/17 21:17:10 by mthea            ###   ########.fr       */
+/*   Updated: 2023/05/18 02:11:44 by haze             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@
 
 typedef struct s_base
 {
-	int				nb_phil;
 	int				time_die;
 	int				time_eat;
-	int				time_sleep;
+	int				nb_phil;
 	int				nb_eat;
+	int				time_sleep;
+	long int		time_start;
+
 	
 }			t_base;
 
@@ -32,10 +34,13 @@ typedef struct s_fin
 {
 	pthread_t		philo;
 	int				id_philo;
+	pthread_t		verif_dead;
+	pthread_mutex_t	verif_death;
 	pthread_t		check_dead;
-	pthread_mutex_t	w;
-	pthread_mutex_t	fourchette_d;
-	pthread_mutex_t	*fourchette_g;
+	pthread_mutex_t	check_write;
+	pthread_mutex_t	*fourchette_d;
+	long int		last_dinner;
+	pthread_mutex_t	fourchette_g;
 	t_base			*next;
 }				t_fin;
 
@@ -52,7 +57,20 @@ int				ft_verif_totale(int argc, char **argv);
 int				ft_final_parse(char **argv, int argc, t_finale *p);
 void			ft_final_parse_two(t_finale *p);
 void			*ft_philosophers(void *data);
-void			*check_dead(void *data);
+void			*ft_verif_dead(void *data);
+int				ft_finish(t_fin *p);
+int 			test(int i);
+
+
+
+
+void ft_think(t_fin *p);
+void ft_eat(t_fin *p);
+void ft_sleep(t_fin *p);
+void ft_fork(t_fin *p);
+void ft_dead(t_fin *p);
+void launch(t_fin *p);
+
 
 long long int	ft_atoi(char *thestring);
 int				ft_error(int error);

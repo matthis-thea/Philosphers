@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mthea <mthea@student.42.fr>                +#+  +:+       +#+         #
+#    By: haze <haze@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 09:06:02 by mthea             #+#    #+#              #
-#    Updated: 2023/05/16 11:00:43 by mthea            ###   ########.fr        #
+#    Updated: 2023/05/18 02:00:23 by haze             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 #-----------------VARIABLES------------------
 #--------------------------------------------
 # VARIABLES FOR DOT C
-PHILOSOPHERS =	ft_parse.c ft_utils.c main.c ft_parse_2.c ft_philosophers.c
+PHILOSOPHERS =	ft_parse.c ft_utils.c main.c ft_parse_2.c ft_philosophers.c ft_action.c ft_action_2.c
 #--------------------------------------------
 # VARIABLES FOR DOT O
 PHILOSOPHERS_OBJ = $(PHILOSOPHERS:.c=.o)
