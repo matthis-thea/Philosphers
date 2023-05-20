@@ -29,10 +29,10 @@ void launch(t_fin *p)
 	ft_fork(p);
 	pthread_mutex_unlock(&p->check_write);
 	pthread_mutex_lock(&p->check_write);
-	ft_eat(p);
 	p->last_dinner = ft_actual_time();
-	pthread_mutex_unlock(&p->check_write);
+	ft_eat(p);
 	ft_usleep(p->next->time_eat);
+	pthread_mutex_unlock(&p->check_write);
 	pthread_mutex_unlock(&p->fourchette_g);
 	pthread_mutex_unlock(p->fourchette_d);
 	pthread_mutex_lock(&p->check_write);

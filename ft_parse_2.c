@@ -17,16 +17,13 @@ void	ft_final_parse_two(t_finale *p)
 	int	i;
 
 	i = 0;
-	p->base.time_start = ft_actual_time();
-	p->base.finish = 0;
 	p->fin->inc_eat = 0;
-	pthread_mutex_init(&p->base.is_dead, NULL);
-	pthread_mutex_init(&p->base.verif_death, NULL);
 	while (i < p->base.nb_phil)
 	{
+		p->fin[i].next = &p->base;
 		p->fin[i].id_philo = i + 1;
 		p->fin[i].fourchette_d = NULL;
-		p->fin[i].last_dinner = p->base.time_start;
+		// p->fin[i].last_dinner = p->base.time_start;
 		pthread_mutex_init(&p->fin[i].fourchette_g, NULL);
 		pthread_mutex_init(&p->fin[i].check_write, NULL);
 		pthread_mutex_init(&p->fin[i].w, NULL);
@@ -36,7 +33,6 @@ void	ft_final_parse_two(t_finale *p)
 			p->fin[i].fourchette_d = &p->fin[0].fourchette_g;
 		else
 			p->fin[i].fourchette_d = &p->fin[i + 1].fourchette_g;
-		p->fin[i].next = &p->base;
 		i++;
 	}
 }

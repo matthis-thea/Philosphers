@@ -52,8 +52,6 @@ int	ft_if_pos(char **argv)
 		number = ft_atoi(argv[i]);
 		if (number < 0)
 			return (0);
-		if ((i == 1 && number > 5) || (i == 1 && number < 1))
-			return (0);
 		if (number > 2147483647)
 			return (0);
 		i++;
@@ -89,6 +87,10 @@ int	ft_final_parse(char **argv, int argc, t_finale *p)
 	p->base.time_eat = ft_atoi(argv[3]);
 	p->base.time_sleep = ft_atoi(argv[4]);
 	p->base.nb_eat = -1;
+	p->base.time_start = ft_actual_time();
+	p->base.finish = 0;
+	pthread_mutex_init(&p->base.is_dead, NULL);
+	pthread_mutex_init(&p->base.verif_death, NULL);
 	if (argc == 6)
 		p->base.nb_eat = ft_atoi(argv[5]);
 	return (1);

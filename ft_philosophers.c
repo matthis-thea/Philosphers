@@ -23,14 +23,16 @@ int ft_start(t_finale *p)
         error = pthread_create(&p->fin[i].philo, NULL, ft_philosophers, &p->fin[i]);
         if (error != 0)
             return(ft_error(-1));
+        p->fin[i].last_dinner = ft_actual_time();
+        ft_usleep(300);
         i++;
     }
-    i = 0;
-    while (i < p->base.nb_phil)
-    {
-        pthread_join(p->fin[i].philo, NULL);
-        i++;
-    }
+    // i = 0;
+    // while (i < p->base.nb_phil)
+    // {
+    //     pthread_join(p->fin[i].philo, NULL);
+    //     i++;
+    // }
     return (1);
 }
 
@@ -40,7 +42,7 @@ void    *ft_philosophers(void *data)
 
 	p = (t_fin *) data;
     if (p->id_philo % 2 == 0)
-        ft_usleep(p->next->time_eat / 10);
+        ft_usleep(15);
     while (!test(p))
     {
         pthread_create(&p->verif_dead, NULL, ft_verif_dead, data);
@@ -92,9 +94,12 @@ int ft_stop(t_finale *p)
 {
     int i;
 
-    i = 0;
+    i = -1;
+	while (++i < p->base.nb_phil)
+		pthread_join(p->fin[i].philo, NULL);
     pthread_mutex_destroy(&p->base.verif_death);
     pthread_mutex_destroy(&p->base.is_dead);
+    i = 0;
     while (i < p->base.nb_phil)
     {
         if (p->base.nb_phil > 1)
@@ -103,6 +108,5 @@ int ft_stop(t_finale *p)
 	    pthread_mutex_destroy(&p->fin[i].w);
         i++;
     }
-    free(p->fin);
     return (1);
 }
