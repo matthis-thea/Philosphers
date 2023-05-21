@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haze <haze@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mthea <mthea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 09:06:02 by mthea             #+#    #+#             */
-/*   Updated: 2023/05/16 18:24:35 by haze             ###   ########.fr       */
+/*   Updated: 2023/05/21 17:34:11 by mthea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int	ft_if_char(char **argv)
 
 int	ft_if_pos(char **argv)
 {
-	long long int number;
-	int	i;
+	long long int	number;
+	int				i;
 
 	i = 1;
 	while (argv[i])

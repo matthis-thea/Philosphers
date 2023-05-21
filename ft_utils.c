@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haze <haze@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mthea <mthea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 09:06:02 by mthea             #+#    #+#             */
-/*   Updated: 2023/05/16 17:35:17 by haze             ###   ########.fr       */
+/*   Updated: 2023/05/21 17:41:05 by mthea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_include.h"
 
-long long int ft_atoi(char *thestring)
+long long int	ft_atoi(char *thestring)
 {
 	int				i;
 	long long int	valeur;
