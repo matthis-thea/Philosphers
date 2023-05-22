@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_action_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mthea <mthea@student.42.fr>                +#+  +:+       +#+        */
+/*   By: haze <haze@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 09:06:02 by mthea             #+#    #+#             */
-/*   Updated: 2023/05/21 18:31:10 by mthea            ###   ########.fr       */
+/*   Updated: 2023/05/22 09:24:18 by haze             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_launch(t_fin *p)
 {
-	pthread_create(&p->verif_dead, NULL, ft_verif_dead, p);
-	pthread_detach(p->verif_dead);
+	pthread_mutex_lock(&p->fourchette_g);
+	pthread_mutex_lock(&p->check_write);
 	ft_fork(p);
 	pthread_mutex_unlock(&p->check_write);
 	if (!p->fourchette_d)
@@ -25,8 +25,8 @@ void	ft_launch(t_fin *p)
 	ft_fork(p);
 	pthread_mutex_unlock(&p->check_write);
 	pthread_mutex_lock(&p->check_write);
-	p->last_dinner = ft_actual_time();
 	ft_eat(p);
+	p->last_dinner = ft_actual_time();
 	p->inc_eat++;
 	ft_usleep(p->next->time_eat);
 	pthread_mutex_unlock(&p->check_write);
